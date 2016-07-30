@@ -1,5 +1,6 @@
 package io.pivotal.spring.cloud.stream.processor.geocoding;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * Created by lei_xu on 7/28/16.
@@ -8,10 +9,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class MongoProperties {
     private String hostName = "localhost";
     private Integer port = 27017;
-    private String database = "geojson";
-    private String collection = "mixblocks";
-    private String user = "admin";
-    private String password = "password";
+    private String database = "test";
+    private String collection;
+    private String user = "";
+    private String password = "";
 
     public String getHostName() {
         return this.hostName;
@@ -37,6 +38,7 @@ public class MongoProperties {
         this.database = database;
     }
 
+    @NotBlank(message = "A valid collection is required")
     public String getCollection() {
         return this.collection;
     }
