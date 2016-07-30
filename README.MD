@@ -45,7 +45,7 @@ db.blocks.find(
        $geoIntersects: {
           $geometry: {
              type: "Point" ,
-             coordinates: [ 139.752268, 35.677043 ]
+             coordinates: [ 139.743317, 35.682955 ]
           }
        }
      }
@@ -56,24 +56,25 @@ db.blocks.find(
 Result:
 ```
 {
+  "_id" : ObjectId("579c2aaa35a06dc3a623daf7"),
   "properties": {
     "district": "千代田区",
-    "block": "霞が関",
-    "code": "10100500"
+    "block": "隼町",
+    "code": "1010070"
   },
   "geometry": {
     "type": "Polygon",
     "coordinates": [
       [
         [
-          139.74962747223682,
-          35.67087572797976
+          139.74167300322014,
+          35.683406014170174
         ],
         ...
         ...
         [
-          139.74962747223682,
-          35.67087572797976
+          139.74167300322014,
+          35.683406014170174
         ]
       ]
     ]
