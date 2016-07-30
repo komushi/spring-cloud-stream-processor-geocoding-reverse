@@ -120,7 +120,20 @@ Log Output
 ```
 payload:468244D1361B8A3EB8D206CC394BC9E9,BB899DFEA9CC964B50C540A1D685CCFB,2013-01-01 00:00:00,2013-01-01 00:04:00,240,1.71,139.752268,35.677043,139.771699,35.697283,CSH,6.50,0.50,0.50,0.00,0.00,7.50
 
-tuple:{"uuid":"fada04d3-8afd-4e07-89e6-3761f802483d","route":"10103400_10100500","timestamp":1469850262440,"pickupAddress":"千代田区 外神田","dropoffAddress":"千代田区 霞が関","pickupLatitude":35.697283,"pickupLongitude":139.771699,"dropoffLatitude":35.677043,"dropoffLongitude":139.752268,"pickupDatetime":"2013-01-01 00:00:00","dropoffDatetime":"2013-01-01 00:04:00"}
+tuple:
+{
+  "uuid": "fada04d3-8afd-4e07-89e6-3761f802483d",
+  "route": "10103400_10100500",
+  "timestamp": 1469850262440,
+  "pickupAddress": "千代田区 外神田",
+  "dropoffAddress": "千代田区 霞が関",
+  "pickupLatitude": 35.697283,
+  "pickupLongitude": 139.771699,
+  "dropoffLatitude": 35.677043,
+  "dropoffLongitude": 139.752268,
+  "pickupDatetime": "2013-01-01 00:00:00",
+  "dropoffDatetime": "2013-01-01 00:04:00"
+}
 ```
 
 ### 1-2-5 Test with Google Map
