@@ -29,14 +29,26 @@ public class Block {
 
         private String block;
 
-        private String code;
+        @Field("district_code")
+        private String districCode;
 
-        public void setCode(String code){
-            this.code = code;
+        @Field("block_code")
+        private String blockCode;
+
+        public void setDistricCode(String districCode){
+            this.districCode = districCode;
         }
 
-        public String getCode(){
-            return this.code;
+        public String getDistricCode(){
+            return this.districCode;
+        }
+
+        public void setBlockCode(String blockCode){
+            this.blockCode = blockCode;
+        }
+
+        public String getBlockCode(){
+            return this.blockCode;
         }
 
         public void setDistrict(String district){

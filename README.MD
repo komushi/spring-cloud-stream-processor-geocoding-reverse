@@ -108,7 +108,7 @@ java -jar http-source-rabbit-1.0.2.RELEASE.jar --server.port=9000 --spring.cloud
 
 ### 1-2-3. Start spring-cloud-stream-processor-geocoding-reverse
 ```
-java -jar target/spring-cloud-stream-processor-geocoding-reverse-0.0.1-SNAPSHOT.jar --server.port=9090 --spring.cloud.stream.bindings.input.destination=http2tuple --spring.cloud.stream.bindings.output.contentType=application/json --spring.cloud.stream.bindings.output.destination=tuple2gem --properties.mongo.collection=blocks
+java -jar target/spring-cloud-stream-processor-geocoding-reverse-0.0.1-SNAPSHOT.jar --server.port=9090 --spring.cloud.stream.bindings.input.destination=http2tuple --spring.cloud.stream.bindings.output.contentType=application/json --spring.cloud.stream.bindings.output.destination=tuple2gem --properties.mongo.database=test --properties.mongo.collection=blocks
 ```
 
 ### 1-2-4. Post a message

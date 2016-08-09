@@ -85,7 +85,7 @@ public class ReverseGeocodingConfiguration {
             throw new MessageTransformationException(message, "coordinates out of scope");
         }
 
-        String route = pickupBlocks.get(0).properties.getCode() + "_" + dropoffBlocks.get(0).properties.getCode();
+        String route = pickupBlocks.get(0).properties.getBlockCode() + "_" + dropoffBlocks.get(0).properties.getBlockCode();
         String pickupAddress = pickupBlocks.get(0).properties.getDistrict() + " " + pickupBlocks.get(0).properties.getBlock();
         pickupAddress = pickupAddress.trim();
         String dropoffAddress = dropoffBlocks.get(0).properties.getDistrict() + " " + dropoffBlocks.get(0).properties.getBlock();
