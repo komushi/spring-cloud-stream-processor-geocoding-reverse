@@ -82,13 +82,27 @@ public class ReverseGeocodingConfiguration {
         List<Block> dropoffBlocks =  mongoOperations.find(dropoffQuery, Block.class, properties.getCollection());
 
         if (pickupBlocks.size() == 0 || dropoffBlocks.size() == 0) {
-            throw new MessageTransformationException(message, "coordinates out of scope");
+            if (pickupBlocks.size() == 0) {
+                throw new MessageTransformationException(message, "pickup coordinates out of scope:" + new GeoJsonPoint(pickupLongitude, pickupLatitude));
+            } else if (dropoffBlocks.size() == 0) {
+                throw new MessageTransformationException(message, "dropoff coordinates out of scope:" + new GeoJsonPoint(dropoffLongitude, dropoffLatitude));
+            }
         }
 
-        String route = pickupBlocks.get(0).properties.getBlockCode() + "_" + dropoffBlocks.get(0).properties.getBlockCode();
-        String pickupAddress = pickupBlocks.get(0).properties.getDistrict() + " " + pickupBlocks.get(0).properties.getBlock();
+        String pickupBlockCode = pickupBlocks.get(0).properties.getBlockCode();
+        String pickupBlock = pickupBlocks.get(0).properties.getBlock();
+        String pickupDistrictCode = pickupBlocks.get(0).properties.getDistricCode();
+        String pickupDistrict = pickupBlocks.get(0).properties.getDistrict();
+
+        String dropoffBlockCode = dropoffBlocks.get(0).properties.getBlockCode();
+        String dropoffBlock = dropoffBlocks.get(0).properties.getBlock();
+        String dropoffDistrictCode = dropoffBlocks.get(0).properties.getDistricCode();
+        String dropoffDistrict = dropoffBlocks.get(0).properties.getDistrict();
+
+        String route = pickupBlockCode + "_" + dropoffBlockCode;
+        String pickupAddress = pickupDistrict + " " + pickupBlock;
         pickupAddress = pickupAddress.trim();
-        String dropoffAddress = dropoffBlocks.get(0).properties.getDistrict() + " " + dropoffBlocks.get(0).properties.getBlock();
+        String dropoffAddress = dropoffDistrict + " " + dropoffBlock;
         dropoffAddress = dropoffAddress.trim();
 
         Tuple tuple = null;
@@ -105,6 +119,14 @@ public class ReverseGeocodingConfiguration {
             .put("dropoffLongitude", dropoffLongitude)
             .put("pickupDatetime", pickupDatetime)
             .put("dropoffDatetime", dropoffDatetime)
+            .put("pickupBlockCode", pickupBlockCode)
+            .put("pickupBlock", pickupBlock)
+            .put("pickupDistrictCode", pickupDistrictCode)
+            .put("pickupDistrict", pickupDistrict)
+            .put("dropoffBlockCode", dropoffBlockCode)
+            .put("dropoffBlock", dropoffBlock)
+            .put("dropoffDistrictCode", dropoffDistrictCode)
+            .put("dropoffDistrict", dropoffDistrict)
             .build();
 
         System.out.println("tuple:" + tuple.toString());
