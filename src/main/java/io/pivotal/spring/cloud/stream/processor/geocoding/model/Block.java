@@ -17,16 +17,18 @@ public class Block {
     @Id
     public String id;
 
-    @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
-    public GeoJsonPolygon geometry;
+//    @GeoSpatialIndexed(type = GeoSpatialIndexType.GEO_2DSPHERE)
+//    public GeoJsonPolygon geometry;
 
     @Field("properties")
     public Properties properties;
 
     public class Properties {
 
+        @Field("district")
         private String district;
 
+        @Field("block")
         private String block;
 
         @Field("district_code")

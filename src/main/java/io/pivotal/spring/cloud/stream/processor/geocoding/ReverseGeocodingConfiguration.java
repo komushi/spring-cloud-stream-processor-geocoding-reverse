@@ -76,7 +76,11 @@ public class ReverseGeocodingConfiguration {
 
         // get block name
         Query pickupQuery = Query.query(Criteria.where("geometry").intersects(new GeoJsonPoint(pickupLongitude, pickupLatitude)));
+        pickupQuery.fields().include("_id");
+        pickupQuery.fields().include("properties");
         Query dropoffQuery = Query.query(Criteria.where("geometry").intersects(new GeoJsonPoint(dropoffLongitude, dropoffLatitude)));
+        dropoffQuery.fields().include("_id");
+        dropoffQuery.fields().include("properties");
 
         List<Block> pickupBlocks =  mongoOperations.find(pickupQuery, Block.class, properties.getCollection());
         List<Block> dropoffBlocks =  mongoOperations.find(dropoffQuery, Block.class, properties.getCollection());
