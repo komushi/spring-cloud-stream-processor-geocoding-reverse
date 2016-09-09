@@ -7,11 +7,35 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix="properties.mongo")
 public class MongoProperties {
+
+    /**
+     * Host name or the IP address of the MongoDB Server
+     */
     private String hostName = "localhost";
+
+    /**
+     * Port of the MongoDB Server
+     */
     private Integer port = 27017;
+
+    /**
+     * Database Name
+     */
     private String database = "test";
+
+    /**
+     * Collection Name
+     */
     private String collection;
+
+    /**
+     * User
+     */
     private String user = "";
+
+    /**
+     * Password
+     */
     private String password = "";
 
     public String getHostName() {
