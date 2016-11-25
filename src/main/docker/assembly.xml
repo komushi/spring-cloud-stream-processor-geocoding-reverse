@@ -6,7 +6,7 @@
 	<dependencySets>
 		<dependencySet>
 			<includes>
-				<include>org.springframework.boot:spring-cloud-stream-processor-geocoding-reverse</include>
+				<include>io.pivotal.spring.cloud.stream.processor.geocoding:spring-cloud-stream-processor-geocoding-reverse</include>
 			</includes>
 			<outputDirectory>.</outputDirectory>
 			<outputFileNameMapping>spring-cloud-stream-processor-geocoding-reverse.jar</outputFileNameMapping>
