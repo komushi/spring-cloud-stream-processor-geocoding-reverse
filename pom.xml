@@ -10,7 +10,7 @@
   </parent>
   <groupId>io.pivotal.spring.cloud.stream.processor.geocoding</groupId>
   <artifactId>spring-cloud-stream-processor-geocoding-reverse</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.2.0-SNAPSHOT</version>
   <name>spring-cloud-stream-processor-geocoding-reverse</name>
   <description>spring-cloud-stream-processor-geocoding-reverse</description>
   <build>
@@ -83,6 +83,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-configuration-processor</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>3.4.0</version>
     </dependency>
   </dependencies>
   <dependencyManagement>
