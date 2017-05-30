@@ -35,6 +35,19 @@ Import GeoJson for Reverse-Geocoding.
 mongoimport --db geojson --collection blocks --type json --file "data/chiyoda_sample.json"
 ```
 
+Create a user to enable geojson access
+```
+use geojson
+
+db.createUser(
+    {
+      user: "root",
+      pwd: "keepitsimple",
+      roles: ["readWrite"]
+    }
+) 
+```
+
 Test in mongo shell
 ```
 db.blocks.createIndex({ geometry: "2dsphere" })
@@ -106,12 +119,12 @@ brew services start rabbitmq
 java -jar http-source-rabbit-1.0.2.RELEASE.jar --server.port=9000 --spring.cloud.stream.bindings.output.destination=http2tuple
 ```
 
-### 1-2-3. Start spring-cloud-stream-processor-geocoding-reverse
+### 1-2-4. Start spring-cloud-stream-processor-geocoding-reverse
 ```
-java -jar target/spring-cloud-stream-processor-geocoding-reverse-0.0.1-SNAPSHOT.jar --server.port=9090 --spring.cloud.stream.bindings.input.destination=http2tuple --spring.cloud.stream.bindings.output.contentType=application/json --spring.cloud.stream.bindings.output.destination=tuple2gem --properties.mongo.database=test --properties.mongo.collection=blocks
+java -jar target/spring-cloud-stream-processor-geocoding-reverse-0.2.0-SNAPSHOT.jar --server.port=9090 --spring.cloud.stream.bindings.input.destination=http2tuple --spring.cloud.stream.bindings.output.contentType=application/json --spring.cloud.stream.bindings.output.destination=tuple2gem --properties.mongo.database=geojson --properties.mongo.collection=blocks --properties.mongo.user=root --properties.mongo.password=keepitsimple
 ```
 
-### 1-2-4. Post a message
+### 1-2-5. Post a message
 
 ```
 curl -H "Content-Type: text/plain" -X POST -d'468244D1361B8A3EB8D206CC394BC9E9,BB899DFEA9CC964B50C540A1D685CCFB,2013-01-01 00:00:00,2013-01-01 00:04:00,240,1.71,139.752268,35.677043,139.771699,35.697283,CSH,6.50,0.50,0.50,0.00,0.00,7.50' 'http://localhost:9000'
@@ -137,7 +150,7 @@ tuple:
 }
 ```
 
-### 1-2-5 Test with Google Map
+### 1-2-6 Test with Google Map
 [Longitude:139.752268 Latitude:35.677043 @霞が関](https://www.google.co.jp/maps/place/35.677043,139.752268)
 
 ![Top Ten List & Matrix](https://rawgit.com/komushi/spring-cloud-stream-processor-geocoding-reverse/master/image/kasumigaseki.png)
@@ -228,7 +241,7 @@ docker run -p 9000:8080 springcloudstream/http-source-rabbit --spring.cloud.stre
 ```
 
 ```
-docker run komushi/spring-cloud-stream-processor-geocoding-reverse --spring.cloud.stream.bindings.input.destination=http_raw --spring.cloud.stream.bindings.input.group=transform_geotuple --spring.cloud.stream.bindings.output.contentType=application/json --spring.cloud.stream.bindings.output.destination=transform_geotuple --properties.mongo.hostName=192.168.11.111 --properties.mongo.port=27017 --properties.mongo.database=geojson --properties.mongo.collection=blocks --spring.rabbitmq.host=192.168.11.111 --spring.rabbitmq.port=5672 --spring.rabbitmq.username=test --spring.rabbitmq.password=test
+docker run komushi/spring-cloud-stream-processor-geocoding-reverse --spring.cloud.stream.bindings.input.destination=http_raw --spring.cloud.stream.bindings.input.group=transform_geotuple --spring.cloud.stream.bindings.output.contentType=application/json --spring.cloud.stream.bindings.output.destination=transform_geotuple --properties.mongo.hostName=192.168.11.111 --properties.mongo.port=27017 --properties.mongo.database=geojson --properties.mongo.collection=blocks --properties.mongo.user=root --properties.mongo.password=keepitsimple --spring.rabbitmq.host=192.168.11.111 --spring.rabbitmq.port=5672 --spring.rabbitmq.username=test --spring.rabbitmq.password=test
 ```
 
 ### 2-5-2. Post a message
